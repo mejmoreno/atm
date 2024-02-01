@@ -1,0 +1,95 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+int main() {
+
+	int userChoice = 0;
+	int tallyAction = 0, tallyLogin = 0, tallyWithdraw = 0, tallyDeposit = 0, tallyBalance = 0, tallyHistory = 0, tallyRegister = 0;
+
+	do {
+
+		int accountBalance = 0, withdrawAmount, depositAmount;
+		string existingUsername, existingPassword, registerUsername, registerPassword;
+
+		cout
+			<< "Welcome!" << endl
+			<< "\nWhat would you like to do?" << endl
+			<< "(1) Login" << endl
+			<< "(2) Withdraw" << endl
+			<< "(3) Deposit" << endl
+			<< "(4) Check Balance" << endl
+			<< "(5) History of User" << endl
+			<< "(6) Register" << endl
+			<< "(0) Exit" << endl << endl
+			<< "Choice: ";
+
+		cin >> userChoice;
+
+		system("cls");
+
+		switch (userChoice) {
+		case 0:
+			exit(0);
+		case 1:
+			cout
+				<< "Please enter your login credentials" << endl
+				<< "\nUsername: ";
+			cin >> existingUsername;
+			cout << "\nPassword: ";
+			cin >> existingPassword;
+			system("cls");
+			++tallyAction;
+			++tallyLogin;
+			break;
+		case 2:
+			cout
+				<< "Current balance: " << accountBalance << endl
+				<< "\nEnter withdraw amount: ";
+			cin >> withdrawAmount;
+			if (withdrawAmount > accountBalance) {
+				cout << "Insufficient account balance";
+				++tallyAction;
+				exit(0);
+			}
+			else
+			accountBalance = accountBalance - withdrawAmount;
+			++tallyWithdraw;
+		case 3:
+			cout
+				<< "Current balance: " << accountBalance << endl
+				<< "\nEnter deposit amount: ";
+			cin >> depositAmount;
+			++tallyAction;
+			if (depositAmount < accountBalance) {
+				cout << "Invalid deposit amount";
+				++tallyAction;
+				exit(0);
+			}
+			else
+			accountBalance = accountBalance + depositAmount;
+			++tallyDeposit;
+		case 4:
+			cout << "Current balance: " << accountBalance << endl;
+			++tallyAction;
+			++tallyBalance;
+				exit(0);
+		case 5:
+			cout << "Number of ATM interactions: " << tallyAction;
+			++tallyAction;
+			++tallyHistory;
+			exit(0);
+		case 6:
+			cout
+				<< "Please enter the following" << endl
+				<< "\nUsername: ";
+			cin >> registerUsername;
+			cout << "\nPassword: ";
+			cin >> registerPassword;
+			system("cls");
+			++tallyAction;
+			++tallyRegister;
+			break;
+		}
+
+	} while (userChoice != 0);
+}
